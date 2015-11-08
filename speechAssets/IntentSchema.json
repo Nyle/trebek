@@ -1,4 +1,29 @@
 {
   "intents": [
+    {
+    	"intent": "HelpIntent",
+    	"slots": []
+    },
+    {
+    	"intent": "StartQuiz"
+    },
+    {
+    	"intent": "AnswerNumber",
+    	"slots": [
+    		{
+    			"name": "NumberAnswer",
+    			"type": "AMAZON.NUMBER"
+    		}
+    	]
+    },
+    {
+    	"intent": "AnswerString",
+    	"slots": [
+    		{
+    			"name": "StringAnswer",
+    			"type": "WORD_QUESTION_ANSWER"
+    		}
+    	]
+    }
   ]
 }
