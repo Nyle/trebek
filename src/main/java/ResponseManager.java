@@ -14,48 +14,66 @@ import com.amazon.speech.ui.Reprompt;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 
 public class ResponseManager {
-        public SpeechletResponse getLaunchResponse(LaunchRequest request,
-                                                   Session session) {
-                return getTellSpeechletResponse("some text");
-        }
-        public SpeechletResponse getHelpIntentResponse(Intent intent,
-                                                       Session session) {
-                return getTellSpeechletResponse("Help Text");
-        }
+	int i = 0;
 
-        public SpeechletResponse setStartQuizIntentResponse(Intent intent, Session session) {
-                //add real things to start quiz
-                return getTellSpeechletResponse("Implement plz");
-        }
+	public SpeechletResponse getLaunchResponse(LaunchRequest request, Session session) {
+		return getTellSpeechletResponse("some text");
+	}
 
-        public SpeechletResponse setNumberAnswerIntentResponse(Intent intent, Session session) {
-                //add real things to change number answer
-                return getTellSpeechletResponse("Implement plz");
-        }
+	public SpeechletResponse getHelpIntentResponse(Intent intent, Session session) {
+		return getTellSpeechletResponse("Help Text");
+	}
 
-        public SpeechletResponse setStringAnswerIntentResponse(Intent intent, Session session) {
-                //add real things to change string answer
-                return getTellSpeechletResponse("Implement plz");
-        }
+	public SpeechletResponse setStartQuizIntentResponse(Intent intent, Session session) {
+		// add real things to start quiz
+		return getTellSpeechletResponse("Okay, let's start");
+	}
 
-        private SpeechletResponse getAskSpeechletResponse(String speechText,
-                                                          String repromptText) {
-                PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-                speech.setText(speechText);
+	public SpeechletResponse setNumberAnswerIntentResponse(Intent intent, Session session) {
+		// add real things to change number answer
+		if (i == 1) {
+			i++;
+			return getAskSpeechletResponse(DementiaQuiz.dq.getText());
+		}
+		else if (i == 2) {
+			i++;
+			return getAskSpeechletResponse(DementiaQuiz.aq.getText());
+		}
+		else if (i == 3) {
+			i++;
+			return getAskSpeechletResponse(DementiaQuiz.mq.getText());
+		}
+		else if (i == 4) {
+			i++;
+			return getAskSpeechletResponse(DementiaQuiz.hq.getText());
+		}
 
-                PlainTextOutputSpeech repromptSpeech =
-                        new PlainTextOutputSpeech();
-                repromptSpeech.setText(repromptText);
-                Reprompt reprompt = new Reprompt();
-                reprompt.setOutputSpeech(repromptSpeech);
+	}
 
-                return SpeechletResponse.newAskResponse(speech, reprompt);
-        }
+	public SpeechletResponse setStringAnswerIntentResponse(Intent intent, Session session) {
+		// add real things to change string answer
+		if (i == 0) {
+			i++;
+			return getAskSpeechletResponse(DementiaQuiz.wq.getText());
+		}
+	}
 
-        private SpeechletResponse getTellSpeechletResponse(String speechText) {
-                PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
-                speech.setText(speechText);
+	private SpeechletResponse getAskSpeechletResponse(String speechText, String repromptText) {
+		PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+		speech.setText(speechText);
 
-                return SpeechletResponse.newTellResponse(speech);
-        }
+		PlainTextOutputSpeech repromptSpeech = new PlainTextOutputSpeech();
+		repromptSpeech.setText(repromptText);
+		Reprompt reprompt = new Reprompt();
+		reprompt.setOutputSpeech(repromptSpeech);
+
+		return SpeechletResponse.newAskResponse(speech, reprompt);
+	}
+
+	private SpeechletResponse getTellSpeechletResponse(String speechText) {
+		PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+		speech.setText(speechText);
+
+		return SpeechletResponse.newTellResponse(speech);
+	}
 }
