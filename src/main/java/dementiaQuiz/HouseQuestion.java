@@ -1,21 +1,19 @@
-import java.util.Calendar;
+package dementiaQuiz;
 
 /**
- * Asks for the year
+ * Asks for the house number of the Echo owner
  *
  * @author Aarav Singh
  * @version (2015.11.07)
  */
 
-public class DateQuestion extends Question {
+public class HouseQuestion extends Question {
     //~ Fields ............................................
     String correctAnswer;
 
     //~ Constructor .......................................
-    public DateQuestion(){
-        Calendar cal = new Calendar();
-        int year = Calendar.get(YEAR);
-        correctAnswer = year.toString();
+    public HouseQuestion(){
+        correctAnswer = "101"
     }
 
     //~ Methods ...........................................
