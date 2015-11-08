@@ -15,10 +15,10 @@ http://www.apple.com/DTDs/PropertyList-1.0.dtd >
             <string>/usr/bin/java</string>
             <string>-jar</string>
             <!-- MODIFY THIS TO POINT TO YOUR EXECUTABLE JAR FILE -->
-            <string>/Users/Chris/Desktop/HackDuke.jar</string>
+            <string>/Users/Chris/GitHub/trebek/HackDuke.jar</string>
         </array>
         <key>OnDemand</key>
-        <true/>
+        <true/>/Users/Chris/GitHub/trebek/HackDuke.xml
         <key>RunAtLoad</key>
         <false/>
         <key>KeepAlive</key>
