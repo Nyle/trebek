@@ -1,1 +1,15 @@
 HelpIntent help
+
+StartQuiz start quiz
+StartQuiz start the quiz
+StartQuiz please start quiz
+StartQuiz please start the quiz
+StartQuiz start dementia quiz
+StartQuiz start the dementia quiz
+StartQuiz please start dementia quiz
+StartQuiz please start the dementia quiz
+StartQuiz yo bitch quiz please
+
+AnswerNumber {NumberAnswer}
+
+AnswerString {StringAnswer} {StringAnswer} {StringAnswer}
