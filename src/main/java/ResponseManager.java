@@ -24,6 +24,18 @@ public class ResponseManager {
                 return getTellSpeechletResponse("Help Text");
         }
 
+        public SpeechletResponse setStartQuizIntentResponse(Intent intent, Session session) {
+                //add real things to start quiz
+        }
+
+        public SpeechletResponse setNumberAnswerIntentResponse(Intent intent, Session session) {
+                //add real things to change number answer
+        }
+
+        public SpeechletResponse setStringAnswerIntentResponse(Intent intent, Session session) {
+                //add real things to change string answer
+        }
+
         private SpeechletResponse getAskSpeechletResponse(String speechText,
                                                           String repromptText) {
                 PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
