@@ -1,3 +1,5 @@
+package dementiaQuiz;
+
 /**
  * A quiz that tests patients for signs of the onset of Dementia
  *

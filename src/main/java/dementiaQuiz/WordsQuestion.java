@@ -1,3 +1,5 @@
+package dementiaQuiz;
+
 /**
  * Assigns words to remember and calls for them at the end of the test
  *
@@ -30,11 +32,11 @@ public class WordsQuestion extends Question {
     }
         
     public String getRepromt(long seed) {
-    	return getText(seed);
+        return getText(seed);
     }
     
     public boolean evaluateAnswer(long seed, String answer) {
-    	return getText(seed).equals(answer);
+        return getText(seed).equals(answer);
     }
     
     private int calcIndexOne(long seed) {

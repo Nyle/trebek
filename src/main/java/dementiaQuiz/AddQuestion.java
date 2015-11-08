@@ -1,3 +1,5 @@
+package dementiaQuiz;
+
 /**
  * Assigns a simple addition question
  *
