@@ -45,7 +45,18 @@ public class TrebekSpeechlet implements Speechlet {
                          request.getRequestId(),
                          session.getSessionId());
 		Intent intent = request.getIntent();
-                // add code to actually delegate to the right handlers
+		if ("HelpIntent".equals(intent.getName())) {
+			return responseManager.getHelpIntentResponse(
+					intent, session);
+		} else if ("StartQuiz".equals(intent.getName())) {
+			return responseManager.setStartQuizIntentResponse(intent, session);
+		} else if ("AnswerNumber".equals(intent.getName())) {
+			return responseManager.setNumberAnswerIntentResponse(intent, session);
+		} else if ("AnswerString".equals(intent.getName())) {
+			return responseManager.setStringAnswerIntentResponse(intent, session);
+		}
+
+		// add code to actually delegate to the right handlers
                 return responseManager.getHelpIntentResponse(intent, session);
 	}
 
