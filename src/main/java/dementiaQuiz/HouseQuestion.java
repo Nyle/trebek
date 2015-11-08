@@ -1,5 +1,6 @@
-package dementiaQuiz;
+package trebek.dementiaquiz;
 
+import trebek.Question;
 /**
  * Asks for the house number of the Echo owner
  *
@@ -8,30 +9,30 @@ package dementiaQuiz;
  */
 
 public class HouseQuestion extends Question {
-    //~ Fields ............................................
-    String correctAnswer;
+        //~ Fields ............................................
+        String correctAnswer;
 
-    //~ Constructor .......................................
-    public HouseQuestion(){
-        correctAnswer = "101"
-    }
-
-    //~ Methods ...........................................
-    public String getText(long seed){
-        text = "What is your house or appartment number excluding any letters?";
-        return text;
-    }
-
-    public String getReprompt(long seed){
-        return this.getText(seed);
-    }
-
-    public boolean evaluateAnswer(long seed, String answer){
-        if (correctAnswer.equals(answer)) {
-            return true;
+        //~ Constructor .......................................
+        public HouseQuestion(){
+                correctAnswer = "101";
         }
-        else {
-            return false;
+
+        //~ Methods ...........................................
+        public String getText(long seed){
+                text = "What is your house or appartment number excluding any letters?";
+                return text;
         }
-    }
+
+        public String getReprompt(long seed){
+                return this.getText(seed);
+        }
+
+        public boolean evaluateAnswer(long seed, String[] answer){
+                if (correctAnswer.equals(answer)) {
+                        return true;
+                }
+                else {
+                        return false;
+                }
+        }
 }

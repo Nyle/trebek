@@ -1,4 +1,4 @@
-
+package trebek;
 /**
  * This is a basic outline for question objects
  * 
@@ -7,12 +7,12 @@
  */
 public abstract class Question {
 
-	private String answer;
-	private String text;
+        protected String answer;
+        protected String text;
 	
 	public abstract String getText(long seed);
 
-	public abstract String getRepromt(long seed);
+	public abstract String getReprompt(long seed);
 	
-	public abstract boolean evaluateAnswer (long seed, String answer);
+	public abstract boolean evaluateAnswer (long seed, String[] answers);
 }

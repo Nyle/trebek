@@ -1,3 +1,4 @@
+package trebek;
 /**
  * Gets the title, intro, and questions of a quiz
  *
@@ -7,9 +8,9 @@
 
 public class Quiz {
     //~ Fields ............................................
-    private Question[] questions;
-    private String title;
-    private String intro;
+    protected Question[] questions;
+    protected String title;
+    protected String intro;
 
     //~ Constructor .......................................
     public Quiz(){

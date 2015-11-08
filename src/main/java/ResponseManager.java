@@ -16,8 +16,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 public class ResponseManager {
         public SpeechletResponse getLaunchResponse(LaunchRequest request,
                                                    Session session) {
-                return getAskSpeechletResponse(
-                        "Some Text", "");
+                return getTellSpeechletResponse("some text");
         }
         public SpeechletResponse getHelpIntentResponse(Intent intent,
                                                        Session session) {
@@ -26,14 +25,17 @@ public class ResponseManager {
 
         public SpeechletResponse setStartQuizIntentResponse(Intent intent, Session session) {
                 //add real things to start quiz
+                return getTellSpeechletResponse("Implement plz");
         }
 
         public SpeechletResponse setNumberAnswerIntentResponse(Intent intent, Session session) {
                 //add real things to change number answer
+                return getTellSpeechletResponse("Implement plz");
         }
 
         public SpeechletResponse setStringAnswerIntentResponse(Intent intent, Session session) {
                 //add real things to change string answer
+                return getTellSpeechletResponse("Implement plz");
         }
 
         private SpeechletResponse getAskSpeechletResponse(String speechText,

@@ -1,6 +1,8 @@
-package dementiaQuiz;
+package trebek.dementiaquiz;
+import java.util.GregorianCalendar;
 import java.util.Calendar;
 
+import trebek.Question;
 /**
  * Asks for the year
  *
@@ -14,9 +16,9 @@ public class DateQuestion extends Question {
 
     //~ Constructor .......................................
     public DateQuestion(){
-        Calendar cal = new Calendar();
-        int year = Calendar.get(YEAR);
-        correctAnswer = year.toString();
+        Calendar cal = new GregorianCalendar();
+        int year = cal.get(Calendar.YEAR);
+        correctAnswer = Integer.toString(year);
     }
 
     //~ Methods ...........................................
@@ -29,7 +31,7 @@ public class DateQuestion extends Question {
         return this.getText(seed);
     }
 
-    public boolean evaluateAnswer(long seed, String answer){
+    public boolean evaluateAnswer(long seed, String[] answer){
         if (correctAnswer.equals(answer)) {
             return true;
         }
