@@ -50,6 +50,8 @@ public class TrebekSpeechlet implements Speechlet {
 					intent, session);
 		} else if ("StartQuiz".equals(intent.getName())) {
 			return responseManager.setStartQuizIntentResponse(intent, session);
+		} else if ("StartQuestion".equals(intent.getName())) {
+			return responseManager.setStartQuestionsIntentResponse(intent, session);
 		} else if ("AnswerNumber".equals(intent.getName())) {
 			return responseManager.setNumberAnswerIntentResponse(intent, session);
 		} else if ("AnswerString".equals(intent.getName())) {

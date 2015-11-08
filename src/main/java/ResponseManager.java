@@ -60,7 +60,7 @@ public class ResponseManager {
 
 	public SpeechletResponse setStringAnswerIntentResponse(Intent intent, Session session) {
 		// add real things to change string answer
-		return "Thank you for your time!";
+		return getTellSpeechletResponse("Thank you for your time!");
 	}
 
 	private SpeechletResponse getAskSpeechletResponse(String speechText, String repromptText) {

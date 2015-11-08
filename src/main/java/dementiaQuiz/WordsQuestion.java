@@ -24,14 +24,23 @@ public class WordsQuestion extends Question {
 
         //~ Methods ...........................................
     
-        public String getText(long seed) {
+        public String giveWords(long seed) {
     	
                 word1 = wordArray[calcIndexOne(seed)];
                 word2 = wordArray[calcIndexTwo(seed)];
                 word3 = wordArray[calcIndexThree(seed)];
     	
-                return "Your words are " + word1 + ", " + word2 + ", " + word3;
+                return "Please remember these three words: " + word1 + ", " + word2 + ", " + word3;
         }
+        
+        public String getText(long seed) {
+        	
+            word1 = wordArray[calcIndexOne(seed)];
+            word2 = wordArray[calcIndexTwo(seed)];
+            word3 = wordArray[calcIndexThree(seed)];
+	
+            return "What were your three words to remember?";
+    }
         
         public String getReprompt(long seed) {
                 return getText(seed);
