@@ -17,7 +17,7 @@ public class WordsQuestion extends Question {
     
     //~ Constructor .......................................
     public WordsQuestion() {
-    	
+    	// :)
     }
 
     //~ Methods ...........................................
@@ -35,8 +35,19 @@ public class WordsQuestion extends Question {
         return getText(seed);
     }
     
-    public boolean evaluateAnswer(long seed, String answer) {
-        return getText(seed).equals(answer);
+    public boolean evaluateAnswer(long seed, String[] answers) {
+    	
+        word1 = wordArray[calcIndexOne(seed)];
+    	word2 = wordArray[calcIndexTwo(seed)];
+    	word3 = wordArray[calcIndexThree(seed)];
+        
+        for (int i = 0; i < answers.length; i++) {
+        	if (!answers[i].equals(word1) || !answers[i].equals(word2) 
+        			|| !answers[i].equals(word3)) {
+        		return false;
+        	}
+        }
+        return true;
     }
     
     private int calcIndexOne(long seed) {

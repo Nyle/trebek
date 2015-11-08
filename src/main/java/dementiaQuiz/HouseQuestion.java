@@ -27,10 +27,9 @@ public class HouseQuestion extends Question {
     }
 
     public boolean evaluateAnswer(long seed, String answer){
-        if (correctAnswer == answer) {
+        if (correctAnswer.equals(answer)) {
             return true;
         }
-
         else {
             return false;
         }

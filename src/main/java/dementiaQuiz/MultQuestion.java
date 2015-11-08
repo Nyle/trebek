@@ -34,10 +34,9 @@ public class WordsQuestion extends Question {
     public boolean evaluateAnswer(long seed, String answer){
         int intAnswer = this.getMulti1(seed) * this.getMulti2(seed);
         String correctAnswer = intAnswer.toString();
-        if (correctAnswer == answer) {
+        if (correctAnswer.equals(answer)) {
             return true;
         }
-
         else {
             return false;
         }
