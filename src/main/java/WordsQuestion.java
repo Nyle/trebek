@@ -34,7 +34,7 @@ public class WordsQuestion extends Question {
     }
     
     public boolean evaluateAnswer(long seed, String answer) {
-    	
+    	return getText(seed).equals(answer);
     }
     
     private int calcIndexOne(long seed) {
