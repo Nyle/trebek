@@ -9,14 +9,17 @@ package dementiaQuiz;
 
 public class DementiaQuiz extends Quiz {
     //~ Fields ............................................
-    questions = [WordsQuestion, DateQuestion, AddQuestion, MultQuestion, HouseQuestion];
+    WordsQuestion wq = new WordsQuestion();
+    DateQuestion dq = new DateQuestion();
+    AddQuestion aq = new AddQuestion();
+    MultQuestion mq = new MultQuestion();
+    HouseQuestion hq = new HouseQuestion();
+    questions = [wq, dq, aq, mq, hq];
     title = "Dementia Test";
     intro = "Hi! Are you ready to start your test?";
 
     //~ Constructor .......................................
-    public Quiz() {
 
-    }
 
     //~ Methods ...........................................
 

@@ -13,9 +13,7 @@ public class AddQuestion extends Question {
     private int add2;
 
     //~ Constructor .......................................
-    public AddQuestion(){
 
-    }
 
     //~ Methods ...........................................
     private int getAdd1(long seed) {
