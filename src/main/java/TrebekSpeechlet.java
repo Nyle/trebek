@@ -17,7 +17,6 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 public class TrebekSpeechlet implements Speechlet {
 	private static final Logger log = LoggerFactory
                 .getLogger(TrebekSpeechlet.class);
-	private AmazonDynamoDBClient amazonDynamoDBClient;
 	private ResponseManager responseManager;
 
 	@Override
@@ -26,6 +25,7 @@ public class TrebekSpeechlet implements Speechlet {
                 throws SpeechletException {
 		log.info("onSessionStarted requestId={}, sessionId={}",
                          request.getRequestId(), session.getSessionId());
+                initializeComponents();
 	}
 
 	@Override
@@ -56,4 +56,8 @@ public class TrebekSpeechlet implements Speechlet {
 		log.info("onSessionEnded requestId={}, sessionId={}",
                          request.getRequestId(), session.getSessionId());
 	}
+
+        private void initializeComponents() {
+                responseManager = new ResponseManager();
+        }
 }
