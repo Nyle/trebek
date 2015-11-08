@@ -8,6 +8,9 @@
     	"intent": "StartQuiz"
     },
     {
+    	"intent": "StartQuestions"
+    },
+    {
     	"intent": "AnswerNumber",
     	"slots": [
     		{
