@@ -26,7 +26,7 @@ public class WordsQuestion extends Question {
     	word2 = wordArray[calcIndexTwo(seed)];
     	word3 = wordArray[calcIndexThree(seed)];
     	
-    	return "Your words are" + word1 + word2 + word3;
+    	return "Your words are " + word1 + ", " + word2 ", " + word3;
     }
         
     public String getRepromt(long seed) {
