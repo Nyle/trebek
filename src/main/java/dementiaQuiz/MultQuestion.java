@@ -11,9 +11,7 @@ public class WordsQuestion extends Question {
     private int multi2;
 
     //~ Constructor .......................................
-    public WordsQuestion(){
 
-    }
 
     //~ Methods ...........................................
     private int getMulti1(long seed) {
