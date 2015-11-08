@@ -17,6 +17,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 public class TrebekSpeechlet implements Speechlet {
 	private static final Logger log = LoggerFactory
                 .getLogger(TrebekSpeechlet.class);
+        private AmazonDynamoDBClient amazonDynamoDBClient;
 	private ResponseManager responseManager;
 
 	@Override
@@ -71,6 +72,10 @@ public class TrebekSpeechlet implements Speechlet {
 	}
 
         private void initializeComponents() {
-                responseManager = new ResponseManager();
+                if (amazonDynamoDBClient == null) {
+                        amazonDynamoDBClient = new AmazonDynamoDBClient();
+                        responseManager = new ResponseManager(
+                                amazonDynamoDBClient);
+                }
         }
 }

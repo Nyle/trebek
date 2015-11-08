@@ -1,5 +1,8 @@
 package trebek;
 
+import trebek.result.ResultManager;
+import trebek.result.Result;
+
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SortedMap;
@@ -14,6 +17,11 @@ import com.amazon.speech.ui.Reprompt;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 
 public class ResponseManager {
+        private ResultManager resultManager;
+        
+        public ResponseManager(final AmazonDynamoDBClient client) {
+                resultManager = new ResultManager(client);
+        }
 	int i = 0;
 
 	public SpeechletResponse getLaunchResponse(LaunchRequest request, Session session) {
