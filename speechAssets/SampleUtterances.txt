@@ -10,12 +10,7 @@ StartQuiz please start dementia quiz
 StartQuiz please start the dementia quiz
 StartQuiz yo bitch quiz please
 
-StartQuestions ok
-StartQuestions okay
-StartQuestions cool
-StartQuestions k
-StartQuestions alright
-
 AnswerNumber {NumberAnswer}
 
-AnswerString {StringAnswer} {StringAnswer} {StringAnswer}
+AnswerString {StringAnswerOne} {StringAnswerTwo} {StringAnswerThree}
+AnswerString {StringAnswerOne} {StringAnswerTwo} and {StringAnswerThree}

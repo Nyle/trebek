@@ -1,32 +1,39 @@
 {
   "intents": [
     {
-    	"intent": "HelpIntent",
-    	"slots": []
+      "intent": "HelpIntent",
+      "slots": []
     },
     {
-    	"intent": "StartQuiz"
+      "intent": "StartQuiz"
     },
     {
-    	"intent": "StartQuestions"
+      "intent": "AnswerNumber",
+      "slots": [
+    	{
+    	  "name": "NumberAnswer",
+    	  "type": "AMAZON.NUMBER"
+    	}
+      ]
     },
     {
-    	"intent": "AnswerNumber",
-    	"slots": [
-    		{
-    			"name": "NumberAnswer",
-    			"type": "AMAZON.NUMBER"
-    		}
-    	]
-    },
-    {
-    	"intent": "AnswerString",
-    	"slots": [
-    		{
-    			"name": "StringAnswer",
-    			"type": "WORD_QUESTION_ANSWER"
-    		}
-    	]
+      "intent": "AnswerString",
+      "slots": [
+    	{
+    	  "name": "StringAnswerOne",
+    	  "type": "WORD_QUESTION_ANSWER"
+    	},
+        {
+    	  "name": "StringAnswerTwo",
+    	  "type": "WORD_QUESTION_ANSWER"
+    	},
+        {
+    	  "name": "StringAnswerThree",
+    	  "type": "WORD_QUESTION_ANSWER"
+    	}
+
+
+      ]
     }
   ]
 }

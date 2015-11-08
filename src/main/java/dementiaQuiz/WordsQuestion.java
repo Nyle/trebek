@@ -62,17 +62,17 @@ public class WordsQuestion extends Question {
         }
     
         private int calcIndexOne(long seed) {
-                int index1 = (int)((1664525 * seed + 1013904233) % Math.pow(2, 32)) % 149;
+                int index1 = Math.abs((int)((1664525 * seed + 1013904233) % Math.pow(2, 32)) % 149);
                 return index1;
         }
     
         private int calcIndexTwo(long seed) {
-                int index2 = (int)((22695477 * seed + 1) % (int)Math.pow(2, 32)) % 149 + 149;
+                int index2 = Math.abs((int)((22695477 * seed + 1) % (int)Math.pow(2, 32)) % 149 + 149);
                 return index2;
         }
     
         private int calcIndexThree(long seed) {
-                int index3 = (int)((1103515245 * seed + 12345) % (int)Math.pow(2, 31)) % 149 + 149 * 2;
+                int index3 = Math.abs((int)((1103515245 * seed + 12345) % (int)Math.pow(2, 31)) % 149 + 149 * 2);
                 return index3;
         }
 }

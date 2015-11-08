@@ -18,11 +18,11 @@ public class MultQuestion extends Question {
 
         //~ Methods ...........................................
         private int getMulti1(long seed) {
-                return multi1 = (int)(seed % 701) % 10 + 3;
+                return multi1 = Math.abs((int)(seed % 701) % 10 + 3);
         }
 
         private int getMulti2(long seed) {
-                return multi2 = (int)(seed % 305) % 10 + 3;
+                return multi2 = Math.abs((int)(seed % 305) % 10 + 3);
         }
 
         public String getText(long seed){
@@ -35,9 +35,9 @@ public class MultQuestion extends Question {
         }
 
         public boolean evaluateAnswer(long seed, String[] answer){
-                int intAnswer = this.getMulti1(seed) * this.getMulti2(seed);
-                String correctAnswer = Integer.toString(intAnswer);
-                if (correctAnswer.equals(answer)) {
+                int correct = this.getMulti1(seed) * this.getMulti2(seed);
+                int actualAnswer = Integer.parseInt(answer[0]);
+                if (correct == actualAnswer) {
                         return true;
                 }
                 else {

@@ -42,6 +42,7 @@ public class TrebekSpeechlet implements Speechlet {
 	public SpeechletResponse onIntent(IntentRequest request,
                                           Session session)
                 throws SpeechletException {
+                initializeComponents();
 		log.info("onIntent requestId={}, sessionId={}",
                          request.getRequestId(),
                          session.getSessionId());
@@ -50,13 +51,11 @@ public class TrebekSpeechlet implements Speechlet {
 			return responseManager.getHelpIntentResponse(
 					intent, session);
 		} else if ("StartQuiz".equals(intent.getName())) {
-			return responseManager.setStartQuizIntentResponse(intent, session);
-		} else if ("StartQuestion".equals(intent.getName())) {
-			return responseManager.setStartQuestionsIntentResponse(intent, session);
+			return responseManager.getStartQuizIntentResponse(intent, session);
 		} else if ("AnswerNumber".equals(intent.getName())) {
-			return responseManager.setNumberAnswerIntentResponse(intent, session);
+			return responseManager.getNumberAnswerIntentResponse(intent, session);
 		} else if ("AnswerString".equals(intent.getName())) {
-			return responseManager.setStringAnswerIntentResponse(intent, session);
+			return responseManager.getStringAnswerIntentResponse(intent, session);
 		}
 
 		// add code to actually delegate to the right handlers

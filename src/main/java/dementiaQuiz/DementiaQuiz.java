@@ -1,6 +1,7 @@
 package trebek.dementiaquiz;
 
 import trebek.Quiz;
+import trebek.Question;
 /**
  * A quiz that tests patients for signs of the onset of Dementia
  *
@@ -9,19 +10,22 @@ import trebek.Quiz;
  */
 
 public class DementiaQuiz extends Quiz {
-        //~ Fields ............................................
-        WordsQuestion wq = new WordsQuestion();
         DateQuestion dq = new DateQuestion();
         AddQuestion aq = new AddQuestion();
         MultQuestion mq = new MultQuestion();
         HouseQuestion hq = new HouseQuestion();
-        // questions = [wq, dq, aq, mq, hq];
-        // title = "Dementia Test";
-        // intro = "Hi! Are you ready to start your test?";
+        WordsQuestion wq = new WordsQuestion();
+                
+        public DementiaQuiz() {
+                Question[] questions = {dq, aq, mq, hq, wq};
+                super.setQuestions(questions);
+        }
 
-        //~ Constructor .......................................
+        public String getIntro(long seed) {
+                return "Let's get started " + wq.giveWords(seed);
+        }
 
-
-        //~ Methods ...........................................
-
+        public String getOutro(long seed) {
+                return "Thanks for your time";
+        }
 }

@@ -11,32 +11,31 @@ import trebek.Question;
  */
 
 public class DateQuestion extends Question {
-    //~ Fields ............................................
-    String correctAnswer;
+        //~ Fields ............................................
+        int correct;
 
-    //~ Constructor .......................................
-    public DateQuestion(){
-        Calendar cal = new GregorianCalendar();
-        int year = cal.get(Calendar.YEAR);
-        correctAnswer = Integer.toString(year);
-    }
-
-    //~ Methods ...........................................
-    public String getText(long seed){
-        text = "What is your house or appartment number excluding any letters?";
-        return text;
-    }
-
-    public String getReprompt(long seed){
-        return this.getText(seed);
-    }
-
-    public boolean evaluateAnswer(long seed, String[] answer){
-        if (correctAnswer.equals(answer)) {
-            return true;
+        //~ Constructor .......................................
+        public DateQuestion(){
+                Calendar cal = new GregorianCalendar();
+                correct = cal.get(Calendar.YEAR);
         }
-        else {
-            return false;
+
+        //~ Methods ...........................................
+        public String getText(long seed){
+                text = "What is the current year?";
+                return text;
         }
-    }
+
+        public String getReprompt(long seed){
+                return this.getText(seed);
+        }
+
+        public boolean evaluateAnswer(long seed, String[] answer){
+                if (Integer.parseInt(answer[0]) == correct) {
+                        return true;
+                }
+                else {
+                        return false;
+                }
+        }
 }

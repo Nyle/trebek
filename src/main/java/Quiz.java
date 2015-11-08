@@ -7,26 +7,36 @@ package trebek;
  */
 
 public class Quiz {
-    //~ Fields ............................................
-    protected Question[] questions;
-    protected String title;
-    protected String intro;
+        //~ Fields ............................................
+        protected Question[] questions;
+        protected String title;
+        protected String intro;
+        protected String outro;
 
-    //~ Constructor .......................................
-    public Quiz(){
+        //~ Constructor .......................................
+        protected Quiz(){
 
-    }
+        }
 
-    //~ Methods ...........................................
-    public String getIntro(){
-        return intro;
-    }
+        protected void setQuestions(Question[] questions) {
+                this.questions = questions;
+        }
 
-    public Question getQuestion(int n){
-        return questions[n];
-    }
+        //~ Methods ...........................................
+        public String getIntro(long seed) {
+                return intro;
+        }
 
-    public String getTitle(){
-        return title;
-    }
+        public String getOutro(long seed){
+                return outro;
+        }
+
+        public Question getQuestion(int n){
+                System.out.println(n);
+                return questions.length > n ? questions[n] : null;
+        }
+
+        public String getTitle(){
+                return title;
+        }
 }

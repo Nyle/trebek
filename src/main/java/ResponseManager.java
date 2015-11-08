@@ -3,10 +3,13 @@ package trebek;
 import trebek.result.ResultManager;
 import trebek.result.Result;
 
+import trebek.dementiaquiz.DementiaQuiz;
+
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SortedMap;
 import java.util.List;
+import java.util.ArrayList;
 
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.LaunchRequest;
@@ -18,57 +21,81 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 
 public class ResponseManager {
         private ResultManager resultManager;
+        private Result result;
+        private Quiz quiz;
         
         public ResponseManager(final AmazonDynamoDBClient client) {
                 resultManager = new ResultManager(client);
+                quiz = new DementiaQuiz();
         }
-	int i = 0;
 
 	public SpeechletResponse getLaunchResponse(LaunchRequest request, Session session) {
-		return getTellSpeechletResponse("some text");
+		this.loadResponse(session);
+                SpeechletResponse res = getAskSpeechletResponse(quiz.getIntro(result.getSeed()) + ". " + quiz.getQuestion(0).getText(result.getSeed()), quiz.getQuestion(0).getReprompt(result.getSeed()));
+                result.incrementQuestion();
+                this.saveResponse();
+		return res;
 	}
 
 	public SpeechletResponse getHelpIntentResponse(Intent intent, Session session) {
-		return getTellSpeechletResponse("Help Text");
+                this.loadResponse(session);
+                this.saveResponse();
+                return getTellSpeechletResponse("Help Text");
 	}
 
-	public SpeechletResponse setStartQuizIntentResponse(Intent intent, Session session) {
-		// add real things to start quiz
-		return getAskSpeechletResponse("Okay, let's start. " + DementiaQuiz.wq.giveWords());
-	}
-	
-	public SpeechletResponse setStartQuestionsIntentResponse(Intent intent, Session session) {
-		if (i == 0) {
-			i++;
-			return getAskSpeechletResponse(DementiaQuiz.dq.getText());
-		}
-	}
+	public SpeechletResponse getStartQuizIntentResponse(Intent intent, Session session) {
+		this.loadResponse(session);
+                result.setQuestion(0);
+                result.setResults(new ArrayList<Boolean>());
+                SpeechletResponse res = getAskSpeechletResponse(quiz.getIntro(result.getSeed()) + ". " + quiz.getQuestion(0).getText(result.getSeed()), quiz.getQuestion(0).getReprompt(result.getSeed()));
+                result.incrementQuestion();
+                this.saveResponse();
+		return res;
+        }
 
-	public SpeechletResponse setNumberAnswerIntentResponse(Intent intent, Session session) {
-		// add real things to change number answer
-		
-		if (i == 1) {
-			i++;
-			return getAskSpeechletResponse(DementiaQuiz.aq.getText());
-		}
-		else if (i == 2) {
-			i++;
-			return getAskSpeechletResponse(DementiaQuiz.mq.getText());
-		}
-		else if (i == 3) {
-			i++;
-			return getAskSpeechletResponse(DementiaQuiz.hq.getText());
-		}
-		else if (i == 4) {
-			i++;
-			return getAskSpeechletResponse(DementiaQuiz.wq.getText());
-		}
+	public SpeechletResponse getNumberAnswerIntentResponse(Intent intent, Session session) {
+                SpeechletResponse res;
 
+		this.loadResponse(session);
+                String[] ans = {intent.getSlot("NumberAnswer").getValue()};
+                List<Boolean> answers = result.getResults();
+                boolean eval = quiz.getQuestion(result.getQuestion()).evaluateAnswer(result.getSeed(), ans);
+                System.out.println(new Boolean(eval));
+                
+                answers.add(eval);
+                result.incrementQuestion();
+                Question next = quiz.getQuestion(result.getQuestion());
+                if (next == null) {
+                        res = getTellSpeechletResponse(quiz.getOutro(result.getSeed()));
+                        result.setIsDone(Boolean.TRUE);
+                } else {
+                        res = getAskSpeechletResponse(next.getText(result.getSeed()), next.getReprompt(result.getSeed()));
+                }
+                this.saveResponse();
+                return res;
 	}
 
-	public SpeechletResponse setStringAnswerIntentResponse(Intent intent, Session session) {
-		// add real things to change string answer
-		return getTellSpeechletResponse("Thank you for your time!");
+	public SpeechletResponse getStringAnswerIntentResponse(Intent intent, Session session) {
+
+                SpeechletResponse res;
+
+		this.loadResponse(session);
+                String[] ans = {intent.getSlot("StringAnswerOne").getValue(),
+                                intent.getSlot("StringAnswerTwo").getValue(),
+                                intent.getSlot("StringAnswerThree").getValue()};
+                List<Boolean> answers = result.getResults();
+                answers.add(quiz.getQuestion(result.getQuestion())
+                            .evaluateAnswer(result.getSeed(), ans));
+                result.incrementQuestion();
+                Question next = quiz.getQuestion(result.getQuestion());
+                if (next == null) {
+                        res = getTellSpeechletResponse(quiz.getOutro(result.getSeed()));
+                        result.setIsDone(Boolean.TRUE);
+                } else {
+                        res = getAskSpeechletResponse(next.getText(result.getSeed()), next.getReprompt(result.getSeed()));
+                }
+                this.saveResponse();
+                return res;
 	}
 
 	private SpeechletResponse getAskSpeechletResponse(String speechText, String repromptText) {
@@ -89,4 +116,12 @@ public class ResponseManager {
 
 		return SpeechletResponse.newTellResponse(speech);
 	}
+
+        private void loadResponse(Session session) {
+                result = resultManager.loadCurrentResult(session.getUser().getUserId());
+        }
+
+        private void saveResponse() {
+                resultManager.save(result);
+        }
 }

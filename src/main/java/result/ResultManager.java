@@ -3,6 +3,10 @@ package trebek.result;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.util.Random;
+import java.util.Date;
+import java.sql.Timestamp;
+
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
@@ -44,6 +48,9 @@ public class ResultManager {
                         res.setIsDone(Boolean.FALSE);
                         res.setQuestion(0);
                         res.setResults(new ArrayList<Boolean>());
+                        Date date = new Date();
+                        Random rand = new Random(new Long(date.getTime()));
+                        res.setSeed(rand.nextLong());
                 } else {
                         System.out.println("loaded");
                         res = mapper.load(Result.class, scanResult.get(0).getId());

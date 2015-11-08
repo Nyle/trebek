@@ -10,11 +10,11 @@ import trebek.Question;
 
 public class HouseQuestion extends Question {
         //~ Fields ............................................
-        String correctAnswer;
+        int answer;
 
         //~ Constructor .......................................
         public HouseQuestion(){
-                correctAnswer = "101";
+                answer = 101;
         }
 
         //~ Methods ...........................................
@@ -28,7 +28,7 @@ public class HouseQuestion extends Question {
         }
 
         public boolean evaluateAnswer(long seed, String[] answer){
-                if (correctAnswer.equals(answer)) {
+                if (this.answer == Integer.parseInt(answer[0])) {
                         return true;
                 }
                 else {

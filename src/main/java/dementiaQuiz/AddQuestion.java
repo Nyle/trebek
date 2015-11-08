@@ -35,9 +35,9 @@ public class AddQuestion extends Question {
         }
 
         public boolean evaluateAnswer(long seed, String[] answer){
-                int intAnswer = this.getAdd1(seed) + this.getAdd2(seed);
-                String correctAnswer = Integer.toString(intAnswer);
-                if (correctAnswer.equals(answer)) {
+                int correct = this.getAdd1(seed) + this.getAdd2(seed);
+                int actualAnswer = Integer.parseInt(answer[0]);
+                if (correct == actualAnswer) {
                         return true;
                 }
                 else {
