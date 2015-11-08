@@ -26,36 +26,41 @@ public class ResponseManager {
 
 	public SpeechletResponse setStartQuizIntentResponse(Intent intent, Session session) {
 		// add real things to start quiz
-		return getTellSpeechletResponse("Okay, let's start");
+		return getAskSpeechletResponse("Okay, let's start. " + DementiaQuiz.wq.giveWords());
+	}
+	
+	public SpeechletResponse setStartQuestionsIntentResponse(Intent intent, Session session) {
+		if (i == 0) {
+			i++;
+			return getAskSpeechletResponse(DementiaQuiz.dq.getText());
+		}
 	}
 
 	public SpeechletResponse setNumberAnswerIntentResponse(Intent intent, Session session) {
 		// add real things to change number answer
+		
 		if (i == 1) {
-			i++;
-			return getAskSpeechletResponse(DementiaQuiz.dq.getText());
-		}
-		else if (i == 2) {
 			i++;
 			return getAskSpeechletResponse(DementiaQuiz.aq.getText());
 		}
-		else if (i == 3) {
+		else if (i == 2) {
 			i++;
 			return getAskSpeechletResponse(DementiaQuiz.mq.getText());
 		}
-		else if (i == 4) {
+		else if (i == 3) {
 			i++;
 			return getAskSpeechletResponse(DementiaQuiz.hq.getText());
+		}
+		else if (i == 4) {
+			i++;
+			return getAskSpeechletResponse(DementiaQuiz.wq.getText());
 		}
 
 	}
 
 	public SpeechletResponse setStringAnswerIntentResponse(Intent intent, Session session) {
 		// add real things to change string answer
-		if (i == 0) {
-			i++;
-			return getAskSpeechletResponse(DementiaQuiz.wq.getText());
-		}
+		return "Thank you for your time!";
 	}
 
 	private SpeechletResponse getAskSpeechletResponse(String speechText, String repromptText) {
